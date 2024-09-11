@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+<body>
+    <h1>Lista de Compras!</h1>
+    <p id="compras">Vamos iniciar suas compras? Essa é a lista de frutas que você precisa comprar!</p>
+    <ul id="frutasList"></ul>
+    <input type="text" id="userInput" placeholder="Digite uma fruta que você já comprou para remover da lista: ">
+    <button onclick="removerFruta()">Remover</button>
+    <p id="result"></p>
+
+    <script>
+       //     3 Vamos criar uma lista de compras. 
+
+        // Crie uma array de frutas, exiba-a ao usuário e, em seguida, peça ao usuário para digitar o nome de uma das frutas.
+
+        // Caso a fruta esteja no array, remova-a e exiba a mensagem "Fruta foi retirada da lista". 
+
+        // Peça novamente para o usuário digitar o nome de uma fruta para ser removida. 
+
+        // Sempre que o usuário procurar por uma fruta que não está no array exiba a mensagem "Fruta indisponível no nosso mercado". 
+
+        // Quando o array não possuir mais itens dentro de si, escreva "Lista de compras finalizada".
+        
+        var frutas = ["Maçã", "Banana", "Morango", "Abacaxi", "Coco", "Maracujá", "Kiwi", "Laranja", "Melancia"];
+
+        function Attlista(){
+            const frutasList = document.getElementById('frutasList');
+            frutasList.innerHTML = '';
+
+            frutas.forEach(fruta => {
+                const listItem = document.createElement('li');
+                listItem.textContent = fruta;
+                frutasList.appendChild(listItem);
+            });
+        }
+           
+        function removerFruta(){
+            var userInput = document.getElementById('userInput').value;
+            var index = frutas.indexOf(userInput);
+
+            if(index != -1){
+                frutas.splice(index, 1);
+                document.getElementById('result').textContent = `Fruta ${userInput} removida com sucesso.`;
+            } else {
+                document.getElementById('result').textContent = "Fruta indisponível no nosso mercado";
+            }
+
+            Attlista();
+
+            if(frutas.length === 0) {
+                document.getElementById('result').textContent = "Lista de compras finalizada.";
+            }
+        }
+
+        Attlista();
+    </script>
+</body>
+</html>
